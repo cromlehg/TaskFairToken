@@ -47,7 +47,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Base price_                 : 325 TFT per ETH
 
 #### Presale
-* _Minimal insvested limit_    : 0.1 ETH
+* _Minimal insvested limit_    : 1 ETH
 * _Softcap_                    : 40 ETH
 * _Hardcap_                    : 10000 ETH
 * _Developers tokens percent_  : 3% of total tokens
