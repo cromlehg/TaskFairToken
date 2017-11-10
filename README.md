@@ -1,5 +1,5 @@
 <p align="center">
-  <h1> Milkcoin</h1>
+  <h1> Task Fair Token</h1>
   <img src="./logo.png">
 </p>
 
