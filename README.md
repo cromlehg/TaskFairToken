@@ -55,7 +55,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Bounty tokens percent_      : 5% of total tokens
 * _Growth fund tokens percent_ : 30% of total tokens
 * _Advisors tokens percent_    : 2% of total tokens
-* _Developers ETH percent_     : 2% of total tokens
+* _Developers ETH percent_     : 2% of eth
 * _Start_                      : 01.12.2017 в 01:00 GMT
 * _Contract manager_           : 
 * _ETH Wallet_                 : 
@@ -80,7 +80,7 @@ _Milestones_
 * _Bounty tokens percent_      : 5% of total tokens
 * _Growth fund tokens percent_ : 30% of total tokens
 * _Advisors tokens percent_    : 2% of total tokens
-* _Developers ETH percent_     : 2% of total tokens
+* _Developers ETH percent_     : 2% of eth
 * _Start_                      : 15.12.2017 в 01:00 GMT
 * _Contract manager_           : 
 * _ETH Wallet_                 : 
