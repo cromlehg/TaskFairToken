@@ -216,7 +216,13 @@ contract Ownable {
 
 }
 
-contract TFTMVPToken is StandardToken, Ownable {	
+/**
+ * @title Mintable token
+ * @dev Simple ERC20 Token example, with mintable token creation
+ * @dev Issue: * https://github.com/OpenZeppelin/zeppelin-solidity/issues/120
+ * Based on code by TokenMarketNet: https://github.com/TokenMarketNet/ico/blob/master/contracts/MintableToken.sol
+ */
+contract TaskFairToken is StandardToken, Ownable {	
 
   using SafeMath for uint256;
 
@@ -224,16 +230,24 @@ contract TFTMVPToken is StandardToken, Ownable {
 
   event MintFinished();
     
-  string public constant name = "Task Fair Token";
+  string public constant name = "TWN Shares";
    
-  string public constant symbol = "TFT";
+  string public constant symbol = "TWN";
     
   uint32 public constant decimals = 18;
 
   bool public mintingFinished = false;
  
-  function mint(address _to, uint256 _amount) public onlyOwner returns (bool) {
+  address public saleAgent;
+
+  function setSaleAgent(address newSaleAgent) public {
+    require(saleAgent == msg.sender || owner == msg.sender);
+    saleAgent = newSaleAgent;
+  }
+
+  function mint(address _to, uint256 _amount) public returns (bool) {
     require(!mintingFinished);
+    require(msg.sender == saleAgent);
     totalSupply = totalSupply.add(_amount);
     balances[_to] = balances[_to].add(_amount);
     Mint(_to, _amount);
@@ -241,11 +255,385 @@ contract TFTMVPToken is StandardToken, Ownable {
     return true;
   }
 
-  function finishMinting() public onlyOwner returns (bool) {
+  function finishMinting() public returns (bool) {
     require(!mintingFinished);
+    require(msg.sender == owner || msg.sender == saleAgent);
     mintingFinished = true;
     MintFinished();
     return true;
+  }
+
+}
+
+contract CommonCrowdsale is Ownable {
+
+  using SafeMath for uint256;
+
+  uint public constant PERCENT_RATE = 100;
+
+  uint public price;
+
+  uint public minInvestedLimit;
+
+  uint public hardcap;
+
+  uint public start;
+
+  uint public end;
+
+  uint public invested;
+
+  uint public minted;
+
+  address public directMintAgent;
+  
+  address public wallet;
+
+  address public devWallet;
+
+  address public devTokensWallet;
+
+  address public foundersTokensWallet;
+
+  address public bountyTokensWallet;
+
+  address public growthTokensWallet;
+
+  address public advisorsTokensWallet;
+
+  uint public devPercent;
+
+  uint public bountyTokensPercent;
+
+  uint public devTokensPercent;
+
+  uint public advisorsTokensPercent;
+
+  uint public foundersTokensPercent;
+
+  uint public growthTokensPercent;
+
+  struct Bonus {
+    uint periodInDays;
+    uint bonus;
+  }
+
+  Bonus[] public bonuses;
+
+  TaskFairToken public token;
+
+  modifier saleIsOn() {
+    require(msg.value >= minInvestedLimit && now >= start && now < end && invested < hardcap);
+    _;
+  }
+
+  modifier onlyDirectMintAgentOrOwner() {
+    require(directMintAgent == msg.sender || owner == msg.sender);
+    _;
+  }
+
+  function setDirectMintAgent(address newDirectMintAgent) public onlyOwner {
+    directMintAgent = newDirectMintAgent;
+  }
+
+  function directMint(address to, uint investedWei) public onlyDirectMintAgentOrOwner saleIsOn {
+    calculateAndTransferTokens(to, investedWei);
+  }
+
+  function setHardcap(uint newHardcap) public onlyOwner { 
+    hardcap = newHardcap;
+  }
+ 
+  function setStart(uint newStart) public onlyOwner { 
+    start = newStart;
+  }
+
+  function setDevPercent(uint newDevPercent) public onlyOwner { 
+    devPercent = newDevPercent;
+  }
+
+  function setBountyTokensPercent(uint newBountyTokensPercent) public onlyOwner { 
+    bountyTokensPercent = newBountyTokensPercent;
+  }
+
+  function setGrowthTokensPercent(uint newGrowthTokensPercent) public onlyOwner { 
+    growthTokensPercent = newGrowthTokensPercent;
+  }
+
+  function setFoundersTokensPercent(uint newFoundersTokensPercent) public onlyOwner { 
+    foundersTokensPercent = newFoundersTokensPercent;
+  }
+
+  function setAdvisorsTokensPercent(uint newAdvisorsTokensPercent) public onlyOwner { 
+    advisorsTokensPercent = newAdvisorsTokensPercent;
+  }
+
+  function setDevTokensPercent(uint newDevTokensPercent) public onlyOwner { 
+    devTokensPercent = newDevTokensPercent;
+  }
+
+  function setFoundersTokensWallet(address newFoundersTokensWallet) public onlyOwner { 
+    foundersTokensWallet = newFoundersTokensWallet;
+  }
+
+  function setGrowthTokensWallet(address newGrowthTokensWallet) public onlyOwner { 
+    growthTokensWallet = newGrowthTokensWallet;
+  }
+
+  function setBountyTokensWallet(address newBountyTokensWallet) public onlyOwner { 
+    bountyTokensWallet = newBountyTokensWallet;
+  }
+
+  function setAdvisorsTokensWallet(address newAdvisorsTokensWallet) public onlyOwner { 
+    advisorsTokensWallet = newAdvisorsTokensWallet;
+  }
+
+  function setDevTokensWallet(address newDevTokensWallet) public onlyOwner { 
+    devTokensWallet = newDevTokensWallet;
+  }
+
+  function setEnd(uint newEnd) public onlyOwner { 
+    require(start < newEnd);
+    end = newEnd;
+  }
+
+  function setToken(address newToken) public onlyOwner { 
+    token = TaskFairToken(newToken);
+  }
+
+  function setWallet(address newWallet) public onlyOwner { 
+    wallet = newWallet;
+  }
+
+  function setDevWallet(address newDevWallet) public onlyOwner { 
+    devWallet = newDevWallet;
+  }
+
+  function setPrice(uint newPrice) public onlyOwner {
+    price = newPrice;
+  }
+
+  function setMinInvestedLimit(uint newMinInvestedLimit) public onlyOwner {
+    minInvestedLimit = newMinInvestedLimit;
+  }
+ 
+  function bonusesCount() public constant returns(uint) {
+    return bonuses.length;
+  }
+
+  function addBonus(uint limit, uint bonus) public onlyOwner {
+    bonuses.push(Bonus(limit, bonus));
+  }
+
+  function mintExtendedTokens() internal {
+    uint extendedTokensPercent = bountyTokensPercent.add(devTokensPercent).add(advisorsTokensPercent).add(foundersTokensPercent).add(growthTokensPercent);      
+    uint extendedTokens = minted.mul(extendedTokensPercent).div(PERCENT_RATE.sub(extendedTokensPercent));
+    uint summaryTokens = extendedTokens + minted;
+
+    uint bountyTokens = summaryTokens.mul(bountyTokensPercent).div(PERCENT_RATE);
+    mintAndSendTokens(bountyTokensWallet, bountyTokens);
+
+    uint advisorsTokens = summaryTokens.mul(advisorsTokensPercent).div(PERCENT_RATE);
+    mintAndSendTokens(advisorsTokensWallet, advisorsTokens);
+
+    uint foundersTokens = summaryTokens.mul(foundersTokensPercent).div(PERCENT_RATE);
+    mintAndSendTokens(foundersTokensWallet, foundersTokens);
+
+    uint growthTokens = summaryTokens.mul(growthTokensPercent).div(PERCENT_RATE);
+    mintAndSendTokens(growthTokensWallet, growthTokens);
+
+    uint devTokens = summaryTokens.sub(advisorsTokens).sub(bountyTokens);
+    mintAndSendTokens(devTokensWallet, devTokens);
+  }
+
+  function mintAndSendTokens(address to, uint amount) internal {
+    token.mint(to, amount);
+    minted = minted.add(amount);
+  }
+
+  function calculateAndTransferTokens(address to, uint investorWei) internal {
+    // update invested value
+    invested = invested.add(investorWei);
+
+    // calculate tokens
+    uint tokens = investorWei.mul(price).div(1 ether);
+    uint bonus = getBonus();
+    if(bonus > 0) {
+      tokens = tokens.add(tokens.mul(bonus).div(100));      
+    }
+    
+    // transfer tokens
+    mintAndSendTokens(to, tokens);
+  }
+
+  function getBonus() public constant returns(uint) {
+    uint prevTimeLimit = start;
+    for (uint i = 0; i < bonuses.length; i++) {
+      Bonus storage bonus = bonuses[i];
+      prevTimeLimit += bonus.periodInDays * 1 days;
+      if (now < prevTimeLimit)
+        return bonus.bonus;
+    }
+    return 0;
+  }
+
+  function createTokens() public payable;
+
+  function() external payable {
+    createTokens();
+  }
+
+  function retrieveTokens(address anotherToken) public onlyOwner {
+    ERC20 alienToken = ERC20(anotherToken);
+    alienToken.transfer(wallet, alienToken.balanceOf(this));
+  }
+
+}
+
+contract Presale is CommonCrowdsale {
+  
+  uint public softcap;
+  
+  bool public refundOn;
+
+  bool public softcapAchieved;
+
+  address public nextSaleAgent;
+
+  mapping (address => uint) public balances;
+
+  function setNextSaleAgent(address newNextSaleAgent) public onlyOwner {
+    nextSaleAgent = newNextSaleAgent;
+  }
+
+  function setSoftcap(uint newSoftcap) public onlyOwner {
+    softcap = newSoftcap;
+  }
+
+  function setDevWallet(address newDevWallet) public onlyOwner {
+    devWallet = newDevWallet;
+  }
+
+  function refund() public {
+    require(now > start && refundOn && balances[msg.sender] > 0);
+    uint value = balances[msg.sender];
+    balances[msg.sender] = 0;
+    msg.sender.transfer(value);
+  } 
+
+  function createTokens() public payable saleIsOn {
+    balances[msg.sender] = balances[msg.sender].add(msg.value);
+    calculateAndTransferTokens(msg.sender, msg.value);
+    if(!softcapAchieved && invested >= softcap) {
+      softcapAchieved = true;      
+    }
+  } 
+
+  function widthraw() public {
+    require(softcapAchieved);
+    uint devWei = this.balance.mul(devPercent).div(PERCENT_RATE);
+    devWallet.transfer(devWei);
+    wallet.transfer(this.balance);
+  } 
+
+  function finishMinting() public onlyOwner {
+    if(!softcapAchieved) {
+      refundOn = true;      
+      token.finishMinting();
+    } else {
+      widthraw();
+      mintExtendedTokens();
+      token.setSaleAgent(nextSaleAgent);
+    }    
+  }
+
+}
+
+contract ICO is CommonCrowdsale {
+  
+  function finishMinting() public onlyOwner {
+    mintExtendedTokens();
+    token.finishMinting();
+  }
+
+  function createTokens() public payable saleIsOn {
+    calculateAndTransferTokens(msg.sender, msg.value);
+    uint devWei = msg.value.mul(devPercent).div(PERCENT_RATE);
+    devWallet.transfer(devWei);
+    wallet.transfer(msg.value.sub(devWei));
+  } 
+
+}
+
+contract Deployer is Ownable {
+
+  Presale public presale;  
+ 
+  ICO public ico;
+
+  TaskFairToken public token;
+
+  function deploy() public onlyOwner {
+    token = new TaskFairToken();
+    
+    presale = new Presale();
+    presale.setToken(token);
+    token.setSaleAgent(presale);
+    presale.setMinInvestedLimit(1000000000000000000);  
+    presale.setPrice(325000000000000000000);
+    presale.setBountyTokensPercent(5);
+    presale.setAdvisorsTokensPercent(2);
+    presale.setDevTokensPercent(3);
+    presale.setFoundersTokensPercent(5);
+    presale.setGrowthTokensPercent(30);
+    presale.setDevPercent(2);
+    
+    // fix in prod
+    presale.setSoftcap(40000000000000000000);
+    presale.setHardcap(10000000000000000000000);
+    presale.addBonus(7,40);
+    presale.addBonus(7,30);
+    presale.setStart(1512133200);
+    presale.setEnd(1513342800);    
+    presale.setWallet(0xb8600b335332724df5108fc0595002409c2adbc6);
+    presale.setBountyTokensWallet(0x66ff3b89e15acb0b5e69179a2e54c494b89bdb1b);
+    presale.setDevTokensWallet(0x54a67f1507deb1bfc58ba3ffa94b59fc50eb74bc);
+    presale.setAdvisorsTokensWallet(0xd1bc33b2c89c93e65b0d476b8b50bfee82594847);
+    presale.setFoundersTokensWallet(0xe619bcd3c4609ae269b5ebe5bf0cb7d1dc70c210);
+    presale.setGrowthTokensWallet(0x39ecc9e56979c884b28d8c791890e279ab1ec5f4);
+    presale.setDevWallet(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
+    presale.setDirectMintAgent(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
+
+    ico = new ICO();
+    ico.setToken(token); 
+    presale.setNextSaleAgent(ico);
+    ico.setMinInvestedLimit(100000000000000000);
+    ico.setPrice(325000000000000000000);
+    presale.setBountyTokensPercent(5);
+    presale.setAdvisorsTokensPercent(2);
+    presale.setDevTokensPercent(3);
+    presale.setFoundersTokensPercent(5);
+    presale.setGrowthTokensPercent(30);
+    presale.setDevPercent(2);
+
+    // fix in prod
+    ico.setHardcap(20769000000000000000000);
+    ico.addBonus(7,15);
+    ico.addBonus(7,10);
+    ico.setStart(1513342800);
+    ico.setEnd(1514638800);
+    ico.setWallet(0x67d78de2f2819dcbd47426a1ac6a23b9e9c9d300);
+    ico.setBountyTokensWallet(0x772215ccf488031991f7dcc65e80a7c1fd497e75);
+    ico.setDevTokensWallet(0x87f2f8a94986d9049147590e12a64ffaa9f946a8);
+    ico.setAdvisorsTokensWallet(0x6bb6dbc29f8adb3a7627ea65372fe471509b7698);
+    ico.setFoundersTokensWallet(0x39ecc9e56979c884b28d8c791890e279ab1ec5f4);
+    ico.setGrowthTokensWallet(0x39ecc9e56979c884b28d8c791890e279ab1ec5f4);
+    ico.setDevWallet(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
+    ico.setDirectMintAgent(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
+    
+    presale.transferOwnership(owner);
+    ico.transferOwnership(owner);
+    token.transferOwnership(owner);
   }
 
 }
