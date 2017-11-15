@@ -62,6 +62,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Advisors tokens percent_    : 2% of total tokens
 * _Developers ETH percent_     : 2% of eth
 * _Start_                      : 01.12.2017 в 01:00 GMT
+* _End_                        : 
 * _Contract manager_           : 
 * _Direct mint agent_          : 
 * _ETH Wallet_                 : 
@@ -88,6 +89,7 @@ _Milestones_
 * _Advisors tokens percent_    : 2% of total tokens
 * _Developers ETH percent_     : 2% of eth
 * _Start_                      : 15.12.2017 в 01:00 GMT
+* _End_                        : 
 * _Contract manager_           : 
 * _Direct mint agent_          : 
 * _ETH Wallet_                 : 
@@ -122,7 +124,8 @@ _Milestones_
 * _Growth fund tokens percent_ : 30% of total tokens
 * _Advisors tokens percent_    : 2% of total tokens
 * _Developers ETH percent_     : 2% of eth
-* _Start_                      : 01.12.2017 в 01:00 GMT
+* _Start_                      : Wed, 15 Nov 2017 00:00:00 GMT
+* _End_                        : Fri, 17 Nov 2017 00:00:00 GMT
 * _Contract manager_           : 0xb8600b335332724Df5108Fc0595002409c2ADbC6
 * _Direct mint agent_          : 0xc56b0d5BBc2bF9b760ebD797DAcD3A683Cb8498F
 * _ETH Wallet_                 : 0xb8600b335332724Df5108Fc0595002409c2ADbC6
@@ -148,7 +151,8 @@ _Milestones_
 * _Growth fund tokens percent_ : 30% of total tokens
 * _Advisors tokens percent_    : 2% of total tokens
 * _Developers ETH percent_     : 2% of eth
-* _Start_                      : 15.12.2017 в 01:00 GMT
+* _Start_                      : Sat, 18 Nov 2017 00:00:00 GMT
+* _End_                        : Tue, 21 Nov 2017 00:00:00 GMT
 * _Contract manager_           : 0xb8600b335332724Df5108Fc0595002409c2ADbC6
 * _Direct mint agent_          : 0xc56b0d5BBc2bF9b760ebD797DAcD3A683Cb8498F
 * _ETH Wallet_                 : 0x67d78DE2f2819dcBd47426A1ac6a23B9e9C9d300
