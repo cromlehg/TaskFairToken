@@ -574,7 +574,7 @@ contract Deployer is Ownable {
   TaskFairToken public token;
 
   function deploy() public onlyOwner {
-    token = new TaskFairToken();
+/*    token = new TaskFairToken();
     
     presale = new Presale();
     presale.setToken(token);
@@ -595,6 +595,79 @@ contract Deployer is Ownable {
     presale.addBonus(7,30);
     presale.setStart(1512133200);
     presale.setEnd(1513342800);    
+    presale.setWallet();
+    presale.setBountyTokensWallet();
+    presale.setDevTokensWallet();
+    presale.setAdvisorsTokensWallet();
+    presale.setFoundersTokensWallet();
+    presale.setGrowthTokensWallet();
+    presale.setDevWallet();
+    presale.setDirectMintAgent();
+
+    ico = new ICO();
+    ico.setToken(token); 
+    presale.setNextSaleAgent(ico);
+    ico.setMinInvestedLimit(100000000000000000);
+    ico.setPrice(325000000000000000000);
+    presale.setBountyTokensPercent(5);
+    presale.setAdvisorsTokensPercent(2);
+    presale.setDevTokensPercent(3);
+    presale.setFoundersTokensPercent(5);
+    presale.setGrowthTokensPercent(30);
+    presale.setDevPercent(2);
+
+    // fix in prod
+    ico.setHardcap(20769000000000000000000);
+    ico.addBonus(7,15);
+    ico.addBonus(7,10);
+    ico.setStart(1513342800);
+    ico.setEnd(1514638800);
+    ico.setWallet();
+    ico.setBountyTokensWallet();
+    ico.setDevTokensWallet();
+    ico.setAdvisorsTokensWallet();
+    ico.setFoundersTokensWallet();
+    ico.setGrowthTokensWallet();
+    ico.setDevWallet();
+    ico.setDirectMintAgent();
+    
+    presale.transferOwnership(owner);
+    ico.transferOwnership(owner);
+    token.transferOwnership(owner);*/
+  }
+
+}
+
+contract TestDeployer is Ownable {
+
+  Presale public presale;  
+ 
+  ICO public ico;
+
+  TaskFairToken public token;
+
+  function deploy() public onlyOwner {
+    token = new TaskFairToken();
+    
+    presale = new Presale();
+    presale.setToken(token);
+    token.setSaleAgent(presale);
+    presale.setMinInvestedLimit(1000000000000000000);  
+    presale.setPrice(325000000000000000000);
+    presale.setBountyTokensPercent(5);
+    presale.setAdvisorsTokensPercent(2);
+    presale.setDevTokensPercent(3);
+    presale.setFoundersTokensPercent(5);
+    presale.setGrowthTokensPercent(30);
+    presale.setDevPercent(2);
+    
+    // fix in prod
+    presale.setSoftcap(4000000000000000000);
+    presale.setHardcap(10000000000000000000000);
+    presale.addBonus(1,40);
+    presale.addBonus(2,30);
+    presale.setStart(1510704000);
+    presale.setEnd(1510876800);    
     presale.setWallet(0xb8600b335332724df5108fc0595002409c2adbc6);
     presale.setBountyTokensWallet(0x66ff3b89e15acb0b5e69179a2e54c494b89bdb1b);
     presale.setDevTokensWallet(0x54a67f1507deb1bfc58ba3ffa94b59fc50eb74bc);
@@ -618,10 +691,10 @@ contract Deployer is Ownable {
 
     // fix in prod
     ico.setHardcap(20769000000000000000000);
-    ico.addBonus(7,15);
-    ico.addBonus(7,10);
-    ico.setStart(1513342800);
-    ico.setEnd(1514638800);
+    ico.addBonus(1,15);
+    ico.addBonus(1,10);
+    ico.setStart(1510963200);
+    ico.setEnd(1511222400);
     ico.setWallet(0x67d78de2f2819dcbd47426a1ac6a23b9e9c9d300);
     ico.setBountyTokensWallet(0x772215ccf488031991f7dcc65e80a7c1fd497e75);
     ico.setDevTokensWallet(0x87f2f8a94986d9049147590e12a64ffaa9f946a8);
