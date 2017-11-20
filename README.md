@@ -11,7 +11,7 @@
 * _Emission_        : Mintable
 * _Crowdsales_      : 2
 * _Fiat dependency_ : No
-* _Tokens locked_   : No
+* _Tokens locked_   : Yes
 
 ## Smart-contracts description
 
@@ -60,7 +60,9 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Bounty tokens percent_      : 5% of total tokens
 * _Growth fund tokens percent_ : 30% of total tokens
 * _Advisors tokens percent_    : 2% of total tokens
+* _Security tokens percent_    : 0.5% of total tokens
 * _Developers ETH percent_     : 2% of eth
+* _Security ETH percent_       : 1% of eth
 * _Start_                      : 01.12.2017 в 01:00 GMT
 * _End_                        : 
 * _Contract manager_           : 
@@ -71,6 +73,8 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Bounty tokens wallet_       : 
 * _Growth fund tokens wallet_  : 
 * _Advisors tokens wallet_     : 
+* _Security tokens wallet_     : 
+* _Security wallet_            : 
 * _Developers ETH wallet_      : 
 
 
@@ -87,7 +91,9 @@ _Milestones_
 * _Bounty tokens percent_      : 5% of total tokens
 * _Growth fund tokens percent_ : 30% of total tokens
 * _Advisors tokens percent_    : 2% of total tokens
+* _Security tokens percent_    : 0.5% of total tokens
 * _Developers ETH percent_     : 2% of eth
+* _Security ETH percent_       : 1% of eth
 * _Start_                      : 15.12.2017 в 01:00 GMT
 * _End_                        : 
 * _Contract manager_           : 
@@ -98,6 +104,8 @@ _Milestones_
 * _Bounty tokens wallet_       : 
 * _Growth fund tokens wallet_  : 
 * _Advisors tokens wallet_     : 
+* _Security tokens wallet_     : 
+* _Security wallet_            : 
 * _Developers ETH wallet_      : 
 
 _Milestones_

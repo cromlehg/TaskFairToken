@@ -240,6 +240,19 @@ contract TaskFairToken is StandardToken, Ownable {
  
   address public saleAgent;
 
+  modifier notLocked() {
+    require(msg.sender == owner || msg.sender == saleAgent || mintingFinished);
+    _;
+  }
+
+  function transfer(address _to, uint256 _value) public notLocked returns (bool) {
+    return super.transfer(_to, _value);
+  }
+
+  function transferFrom(address from, address to, uint256 value) public notLocked returns (bool) {
+    return super.transferFrom(from, to, value);
+  }
+
   function setSaleAgent(address newSaleAgent) public {
     require(saleAgent == msg.sender || owner == msg.sender);
     saleAgent = newSaleAgent;
@@ -269,7 +282,7 @@ contract CommonCrowdsale is Ownable {
 
   using SafeMath for uint256;
 
-  uint public constant PERCENT_RATE = 100;
+  uint public constant PERCENT_RATE = 1000;
 
   uint public price;
 
@@ -293,6 +306,8 @@ contract CommonCrowdsale is Ownable {
 
   address public devTokensWallet;
 
+  address public securityWallet;
+
   address public foundersTokensWallet;
 
   address public bountyTokensWallet;
@@ -301,7 +316,11 @@ contract CommonCrowdsale is Ownable {
 
   address public advisorsTokensWallet;
 
+  address public securityTokensWallet;
+
   uint public devPercent;
+
+  uint public securityPercent;
 
   uint public bountyTokensPercent;
 
@@ -312,6 +331,8 @@ contract CommonCrowdsale is Ownable {
   uint public foundersTokensPercent;
 
   uint public growthTokensPercent;
+
+  uint public securityTokensPercent;
 
   struct Bonus {
     uint periodInDays;
@@ -352,6 +373,10 @@ contract CommonCrowdsale is Ownable {
     devPercent = newDevPercent;
   }
 
+  function setSecurityPercent(uint newSecurityPercent) public onlyOwner { 
+    securityPercent = newSecurityPercent;
+  }
+
   function setBountyTokensPercent(uint newBountyTokensPercent) public onlyOwner { 
     bountyTokensPercent = newBountyTokensPercent;
   }
@@ -370,6 +395,10 @@ contract CommonCrowdsale is Ownable {
 
   function setDevTokensPercent(uint newDevTokensPercent) public onlyOwner { 
     devTokensPercent = newDevTokensPercent;
+  }
+
+  function setSecurityTokensPercent(uint newSecurityTokensPercent) public onlyOwner { 
+    securityTokensPercent = newSecurityTokensPercent;
   }
 
   function setFoundersTokensWallet(address newFoundersTokensWallet) public onlyOwner { 
@@ -392,6 +421,10 @@ contract CommonCrowdsale is Ownable {
     devTokensWallet = newDevTokensWallet;
   }
 
+  function setSecurityTokensWallet(address newSecurityTokensWallet) public onlyOwner { 
+    securityTokensWallet = newSecurityTokensWallet;
+  }
+
   function setEnd(uint newEnd) public onlyOwner { 
     require(start < newEnd);
     end = newEnd;
@@ -407,6 +440,10 @@ contract CommonCrowdsale is Ownable {
 
   function setDevWallet(address newDevWallet) public onlyOwner { 
     devWallet = newDevWallet;
+  }
+
+  function setSecurityWallet(address newSecurityWallet) public onlyOwner { 
+    securityWallet = newSecurityWallet;
   }
 
   function setPrice(uint newPrice) public onlyOwner {
@@ -426,7 +463,7 @@ contract CommonCrowdsale is Ownable {
   }
 
   function mintExtendedTokens() internal {
-    uint extendedTokensPercent = bountyTokensPercent.add(devTokensPercent).add(advisorsTokensPercent).add(foundersTokensPercent).add(growthTokensPercent);      
+    uint extendedTokensPercent = bountyTokensPercent.add(devTokensPercent).add(advisorsTokensPercent).add(foundersTokensPercent).add(growthTokensPercent).add(securityTokensPercent);
     uint extendedTokens = minted.mul(extendedTokensPercent).div(PERCENT_RATE.sub(extendedTokensPercent));
     uint summaryTokens = extendedTokens + minted;
 
@@ -442,8 +479,11 @@ contract CommonCrowdsale is Ownable {
     uint growthTokens = summaryTokens.mul(growthTokensPercent).div(PERCENT_RATE);
     mintAndSendTokens(growthTokensWallet, growthTokens);
 
-    uint devTokens = summaryTokens.sub(advisorsTokens).sub(bountyTokens);
+    uint devTokens = summaryTokens.mul(devTokensPercent).div(PERCENT_RATE);
     mintAndSendTokens(devTokensWallet, devTokens);
+
+    uint secuirtyTokens = summaryTokens.mul(securityTokensPercent).div(PERCENT_RATE);
+    mintAndSendTokens(securityTokensWallet, devTokens);
   }
 
   function mintAndSendTokens(address to, uint amount) internal {
@@ -533,6 +573,8 @@ contract Presale is CommonCrowdsale {
     require(softcapAchieved);
     uint devWei = this.balance.mul(devPercent).div(PERCENT_RATE);
     devWallet.transfer(devWei);
+    uint securityWei = this.balance.mul(securityPercent).div(PERCENT_RATE);
+    securityWallet.transfer(securityWei);
     wallet.transfer(this.balance);
   } 
 
@@ -574,19 +616,21 @@ contract Deployer is Ownable {
   TaskFairToken public token;
 
   function deploy() public onlyOwner {
-/*    token = new TaskFairToken();
+    token = new TaskFairToken();
     
     presale = new Presale();
     presale.setToken(token);
     token.setSaleAgent(presale);
     presale.setMinInvestedLimit(1000000000000000000);  
     presale.setPrice(325000000000000000000);
-    presale.setBountyTokensPercent(5);
-    presale.setAdvisorsTokensPercent(2);
-    presale.setDevTokensPercent(3);
-    presale.setFoundersTokensPercent(5);
-    presale.setGrowthTokensPercent(30);
-    presale.setDevPercent(2);
+    presale.setBountyTokensPercent(50);
+    presale.setAdvisorsTokensPercent(20);
+    presale.setDevTokensPercent(30);
+    presale.setFoundersTokensPercent(50);
+    presale.setGrowthTokensPercent(300);
+    presale.setSecurityTokensPercent(5);
+    presale.setDevPercent(20);
+    presale.setSecurityPercent(10);
     
     // fix in prod
     presale.setSoftcap(40000000000000000000);
@@ -595,79 +639,6 @@ contract Deployer is Ownable {
     presale.addBonus(7,30);
     presale.setStart(1512133200);
     presale.setEnd(1513342800);    
-    presale.setWallet();
-    presale.setBountyTokensWallet();
-    presale.setDevTokensWallet();
-    presale.setAdvisorsTokensWallet();
-    presale.setFoundersTokensWallet();
-    presale.setGrowthTokensWallet();
-    presale.setDevWallet();
-    presale.setDirectMintAgent();
-
-    ico = new ICO();
-    ico.setToken(token); 
-    presale.setNextSaleAgent(ico);
-    ico.setMinInvestedLimit(100000000000000000);
-    ico.setPrice(325000000000000000000);
-    presale.setBountyTokensPercent(5);
-    presale.setAdvisorsTokensPercent(2);
-    presale.setDevTokensPercent(3);
-    presale.setFoundersTokensPercent(5);
-    presale.setGrowthTokensPercent(30);
-    presale.setDevPercent(2);
-
-    // fix in prod
-    ico.setHardcap(20769000000000000000000);
-    ico.addBonus(7,15);
-    ico.addBonus(7,10);
-    ico.setStart(1513342800);
-    ico.setEnd(1514638800);
-    ico.setWallet();
-    ico.setBountyTokensWallet();
-    ico.setDevTokensWallet();
-    ico.setAdvisorsTokensWallet();
-    ico.setFoundersTokensWallet();
-    ico.setGrowthTokensWallet();
-    ico.setDevWallet();
-    ico.setDirectMintAgent();
-    
-    presale.transferOwnership(owner);
-    ico.transferOwnership(owner);
-    token.transferOwnership(owner);*/
-  }
-
-}
-
-contract TestDeployer is Ownable {
-
-  Presale public presale;  
- 
-  ICO public ico;
-
-  TaskFairToken public token;
-
-  function deploy() public onlyOwner {
-    token = new TaskFairToken();
-    
-    presale = new Presale();
-    presale.setToken(token);
-    token.setSaleAgent(presale);
-    presale.setMinInvestedLimit(1000000000000000000);  
-    presale.setPrice(325000000000000000000);
-    presale.setBountyTokensPercent(5);
-    presale.setAdvisorsTokensPercent(2);
-    presale.setDevTokensPercent(3);
-    presale.setFoundersTokensPercent(5);
-    presale.setGrowthTokensPercent(30);
-    presale.setDevPercent(2);
-    
-    // fix in prod
-    presale.setSoftcap(4000000000000000000);
-    presale.setHardcap(10000000000000000000000);
-    presale.addBonus(1,40);
-    presale.addBonus(2,30);
-    presale.setStart(1510704000);
-    presale.setEnd(1510876800);    
     presale.setWallet(0xb8600b335332724df5108fc0595002409c2adbc6);
     presale.setBountyTokensWallet(0x66ff3b89e15acb0b5e69179a2e54c494b89bdb1b);
     presale.setDevTokensWallet(0x54a67f1507deb1bfc58ba3ffa94b59fc50eb74bc);
@@ -676,25 +647,29 @@ contract TestDeployer is Ownable {
     presale.setGrowthTokensWallet(0x39ecc9e56979c884b28d8c791890e279ab1ec5f4);
     presale.setDevWallet(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
     presale.setDirectMintAgent(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
+    presale.setSecurityTokensWallet(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
+    presale.setSecurityWallet(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
 
     ico = new ICO();
     ico.setToken(token); 
     presale.setNextSaleAgent(ico);
     ico.setMinInvestedLimit(100000000000000000);
     ico.setPrice(325000000000000000000);
-    presale.setBountyTokensPercent(5);
-    presale.setAdvisorsTokensPercent(2);
-    presale.setDevTokensPercent(3);
-    presale.setFoundersTokensPercent(5);
-    presale.setGrowthTokensPercent(30);
-    presale.setDevPercent(2);
+    presale.setBountyTokensPercent(50);
+    presale.setAdvisorsTokensPercent(20);
+    presale.setDevTokensPercent(30);
+    presale.setFoundersTokensPercent(50);
+    presale.setGrowthTokensPercent(300);
+    presale.setSecurityTokensPercent(5);
+    presale.setDevPercent(20);
+    presale.setSecurityPercent(10);
 
     // fix in prod
     ico.setHardcap(20769000000000000000000);
-    ico.addBonus(1,15);
-    ico.addBonus(1,10);
-    ico.setStart(1510963200);
-    ico.setEnd(1511222400);
+    ico.addBonus(7,15);
+    ico.addBonus(7,10);
+    ico.setStart(1513342800);
+    ico.setEnd(1514638800);
     ico.setWallet(0x67d78de2f2819dcbd47426a1ac6a23b9e9c9d300);
     ico.setBountyTokensWallet(0x772215ccf488031991f7dcc65e80a7c1fd497e75);
     ico.setDevTokensWallet(0x87f2f8a94986d9049147590e12a64ffaa9f946a8);
@@ -703,6 +678,8 @@ contract TestDeployer is Ownable {
     ico.setGrowthTokensWallet(0x39ecc9e56979c884b28d8c791890e279ab1ec5f4);
     ico.setDevWallet(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
     ico.setDirectMintAgent(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
+    ico.setSecurityTokensWallet(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
+    ico.setSecurityWallet(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
     
     presale.transferOwnership(owner);
     ico.transferOwnership(owner);
