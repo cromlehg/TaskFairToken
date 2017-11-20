@@ -118,9 +118,9 @@ _Milestones_
 * _Base price_                 : 325 TFT per ETH
 
 #### Links
-* _Token_ - https://kovan.etherscan.io/token/0x626a5247adc4e58f77ae3b9a55ec18ef0ea10810
-* _Presale_ - https://kovan.etherscan.io/address/0xe304c96166ef67a492eb338852c3f8f1efeebc83
-* _Mainsale_ - https://kovan.etherscan.io/address/0x7579712244c2601d74df641e89bf8bbbb3079655
+* _Token_ - https://kovan.etherscan.io/token/0xe14d93851224ab1d171d6f19342b71f2dce87bbc
+* _Presale_ - https://kovan.etherscan.io/address/0xe389aa4990d54193cd47296a040ff09645575fde
+* _Mainsale_ - https://kovan.etherscan.io/address/0x6473b4e65285fd3f4394c5d159209634db9df8de
 
 #### Presale
 * _Minimal insvested limit_    : 1 ETH
@@ -180,12 +180,11 @@ _Milestones_
 #### Investors
 
 ##### Presale
-* _0xb8600b335332724Df5108Fc0595002409c2ADbC6_ - 1 ETH invested => 455 TFT tokens, transaction: https://kovan.etherscan.io/tx/0x1405486d1846797e028606aaa399f559695d82ada94f6d243a126ef0fef17cf9
+* https://kovan.etherscan.io/tx/0x33836049436a84d8803fbee0377fde7d93ea6a0455b267dca1747cdede197fde
 
 ##### Mainsale
 
 ##### Service operations
-* Presale finishMinting: https://kovan.etherscan.io/tx/0xdc63e5aaaed73388b62b530ef5f1f771cb896a95072dbd82874684e3c0fbcbd7
 
 #### Transfer tokens transactions
 
