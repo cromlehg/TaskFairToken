@@ -232,7 +232,7 @@ contract TaskFairToken is StandardToken, Ownable {
     
   string public constant name = "Task Fair Token";
    
-  string public constant symbol = "TFT";
+  string public constant symbol = "TGE";
     
   uint32 public constant decimals = 18;
 
@@ -343,8 +343,8 @@ contract CommonCrowdsale is Ownable {
 
   TaskFairToken public token;
 
-  modifier saleIsOn() {
-    require(msg.value >= minInvestedLimit && now >= start && now < end && invested < hardcap);
+  modifier saleIsOn(uint value) {
+    require(value >= minInvestedLimit && now >= start && now < end && invested < hardcap);
     _;
   }
 
@@ -438,7 +438,7 @@ contract CommonCrowdsale is Ownable {
     directMintAgent = newDirectMintAgent;
   }
 
-  function directMint(address to, uint investedWei) public onlyDirectMintAgentOrOwner saleIsOn {
+  function directMint(address to, uint investedWei) public onlyDirectMintAgentOrOwner saleIsOn(investedWei) {
     calculateAndTransferTokens(to, investedWei);
   }
 
@@ -600,14 +600,18 @@ contract Presale is CommonCrowdsale {
     Refunded(msg.sender, value);
   } 
 
-  function createTokens() public payable saleIsOn {
+  function createTokens() public payable saleIsOn(msg.value) {
     balances[msg.sender] = balances[msg.sender].add(msg.value);
     calculateAndTransferTokens(msg.sender, msg.value);
+  } 
+
+  function calculateAndTransferTokens(address to, uint investorWei) internal {
+    super.calculateAndTransferTokens(to, investorWei);
     if(!softcapAchieved && invested >= softcap) {
       softcapAchieved = true;      
       SoftcapReached();
     }
-  } 
+  }
 
   function widthraw() public onlyOwner {
     require(softcapAchieved);
@@ -669,13 +673,13 @@ contract ICO is CommonCrowdsale {
     token.finishMinting();
   }
 
-  function createTokens() public payable saleIsOn {
-    calculateAndTransferTokens(msg.sender, msg.value);
+  function createTokens() public payable saleIsOn(msg.value) {
     uint devWei = msg.value.mul(devPercent).div(PERCENT_RATE);
-    devWallet.transfer(devWei);
     uint securityWei = this.balance.mul(securityPercent).div(PERCENT_RATE);
+    devWallet.transfer(devWei);
     securityWallet.transfer(securityWei);
     wallet.transfer(msg.value.sub(devWei).sub(securityWei));
+    calculateAndTransferTokens(msg.sender, msg.value);
   } 
 
 }

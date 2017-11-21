@@ -6,7 +6,7 @@
 
 * _Standart_        : ERC20
 * _Name_            : TaskFairToken
-* _Ticket_          : TFT
+* _Ticket_          : TGE
 * _Decimals_        : 18
 * _Emission_        : Mintable
 * _Crowdsales_      : 2
@@ -20,7 +20,7 @@ Crowdsale contracts have special function to retrieve transferred in errors toke
 
 ### Contracts contains
 1. _TaskFairToken_ 
-2. _TAskFairCrowdsale_
+2. _TaskFairCrowdsale_
 
 ### How to manage contract
 To start working with contract you should follow next steps:
@@ -44,7 +44,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 
 ## Main network configuration
 
-* _Base price_                 : 325 TFT per ETH
+* _Base price_                 : 325 TGE per ETH
 
 #### Links
 * _Token_ - 
