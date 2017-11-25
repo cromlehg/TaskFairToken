@@ -180,10 +180,10 @@ _Milestones_
 
 #### Investors
 
-##### Presale
+##### PreTGE
 * https://kovan.etherscan.io/tx/0x33836049436a84d8803fbee0377fde7d93ea6a0455b267dca1747cdede197fde
 
-##### Mainsale
+##### TGE
 
 ##### Service operations
 
