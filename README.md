@@ -49,7 +49,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 
 #### Links
 * _Token_ - 
-* _PreTGE-
+* _PreTGE_ -
 * _TGE_ -
 
 #### Pre Token General Event
