@@ -228,7 +228,7 @@ contract TaskFairToken is StandardToken, Ownable {
     
   string public constant name = "Task Fair Token";
    
-  string public constant symbol = "TGE";
+  string public constant symbol = "TFT";
     
   uint32 public constant decimals = 18;
 
@@ -619,7 +619,7 @@ contract CommonCrowdsale is StagedCrowdsale {
 
 }
 
-contract Presale is CommonCrowdsale {
+contract PreTGE is CommonCrowdsale {
   
   uint public softcap;
   
@@ -637,7 +637,7 @@ contract Presale is CommonCrowdsale {
 
   event Refunded(address indexed beneficiary, uint256 weiAmount);
 
-  function Presale() public {
+  function PreTGE() public {
     setMinInvestedLimit(1000000000000000000);  
     setPrice(4000000000000000000000);
     setBountyTokensPercent(50);
@@ -725,9 +725,9 @@ contract Presale is CommonCrowdsale {
 
 }
 
-contract ICO is CommonCrowdsale {
+contract TGE is CommonCrowdsale {
   
-  function ICO() public {
+  function TGE() public {
     setMinInvestedLimit(100000000000000000);
     setPrice(4000000000000000000000);
     setBountyTokensPercent(50);

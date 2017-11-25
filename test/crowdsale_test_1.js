@@ -14,9 +14,9 @@ const should = require('chai')
 
 const Token = artifacts.require('TaskFairToken')
 
-const Mainsale = artifacts.require('ICO')
+const Mainsale = artifacts.require('TGE')
 
-const Presale = artifacts.require('Presale')
+const Presale = artifacts.require('PreTGE')
 
 contract('Crowdsale', function(wallets) {
 

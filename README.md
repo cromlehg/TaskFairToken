@@ -6,7 +6,7 @@
 
 * _Standart_        : ERC20
 * _Name_            : TaskFairToken
-* _Ticket_          : TGE
+* _Ticket_          : TFT
 * _Decimals_        : 18
 * _Emission_        : Mintable
 * _Crowdsales_      : 2
@@ -20,7 +20,8 @@ Crowdsale contracts have special function to retrieve transferred in errors toke
 
 ### Contracts contains
 1. _TaskFairToken_ 
-2. _TaskFairCrowdsale_
+2. _PreTGE_
+3. _TGE_
 
 ### How to manage contract
 To start working with contract you should follow next steps:
@@ -44,14 +45,14 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 
 ## Main network configuration
 
-* _Base price_                 : 325 TGE per ETH
+* _Base price_                 : 4000 TFT per ETH
 
 #### Links
 * _Token_ - 
-* _Presale_ -
-* _Mainsale_ -
+* _PreTGE-
+* _TGE_ -
 
-#### Presale
+#### Pre Token General Event
 * _Minimal insvested limit_    : 1 ETH
 * _Softcap_                    : 40 ETH
 * _Hardcap_                    : 10000 ETH
@@ -63,8 +64,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Security tokens percent_    : 0.5% of total tokens
 * _Developers ETH percent_     : 2% of eth
 * _Security ETH percent_       : 1% of eth
-* _Start_                      : 01.12.2017 в 01:00 GMT
-* _End_                        : 
+* _Start_                      : 04.12.2017 в 01:00 GMT
 * _Contract manager_           : 
 * _Direct mint agent_          : 
 * _ETH Wallet_                 : 
@@ -80,10 +80,11 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 
 _Milestones_
 
-1. 1 week                      : +40%
-2. 1 week                      : +30%
+1. 1 week or up to  570 ETH    : discount 40%
+2. 1 week or up to 1400 ETH    : discount 20%
+3. 1 week or up to 2570 ETH    : discount 30%
 
-#### ICO
+#### Token General Event
 * _Minimal insvested limit_    : 0.1 ETH
 * _Hardcap_                    : 20769 ETH
 * _Developers tokens percent_  : 3% of total tokens
@@ -94,8 +95,7 @@ _Milestones_
 * _Security tokens percent_    : 0.5% of total tokens
 * _Developers ETH percent_     : 2% of eth
 * _Security ETH percent_       : 1% of eth
-* _Start_                      : 15.12.2017 в 01:00 GMT
-* _End_                        : 
+* _Start_                      : 26.12.2017 в 01:00 GMT
 * _Contract manager_           : 
 * _Direct mint agent_          : 
 * _ETH Wallet_                 : 
@@ -109,20 +109,21 @@ _Milestones_
 * _Developers ETH wallet_      : 
 
 _Milestones_
-1. 1 week                      : +20%
-2. 1 week                      : +10%
+1. 1 week or up to  2850 ETH   : discount 20%
+2. 1 week or up to  5700 ETH   : discount 10%
+3. 1 week or up to 18280 ETH   : no discount
 
 
-## Kovan network configuration 1
+## Kovan network configuration 1 old test
 
 * _Base price_                 : 325 TFT per ETH
 
 #### Links
 * _Token_ - https://kovan.etherscan.io/token/0xe14d93851224ab1d171d6f19342b71f2dce87bbc
-* _Presale_ - https://kovan.etherscan.io/address/0xe389aa4990d54193cd47296a040ff09645575fde
-* _Mainsale_ - https://kovan.etherscan.io/address/0x6473b4e65285fd3f4394c5d159209634db9df8de
+* _PreTGE_ - https://kovan.etherscan.io/address/0xe389aa4990d54193cd47296a040ff09645575fde
+* _TGE_ - https://kovan.etherscan.io/address/0x6473b4e65285fd3f4394c5d159209634db9df8de
 
-#### Presale
+#### PreTGE
 * _Minimal insvested limit_    : 1 ETH
 * _Softcap_                    : 4 ETH
 * _Hardcap_                    : 10000 ETH
@@ -150,7 +151,7 @@ _Milestones_
 1. 1 day                       : +40%
 2. 2 days                      : +30%
 
-#### ICO
+#### TGE
 * _Minimal insvested limit_    : 0.1 ETH
 * _Hardcap_                    : 20769 ETH
 * _Developers tokens percent_  : 3% of total tokens
