@@ -55,7 +55,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 #### Pre Token General Event
 * _Minimal insvested limit_    : 1 ETH
 * _Softcap_                    : 40 ETH
-* _Hardcap_                    : 10000 ETH
+* _Hardcap_                    : 4540 ETH
 * _Developers tokens percent_  : 3% of total tokens
 * _Founders tokens percent_    : 5% of total tokens
 * _Bounty tokens percent_      : 5% of total tokens
@@ -86,7 +86,7 @@ _Milestones_
 
 #### Token General Event
 * _Minimal insvested limit_    : 0.1 ETH
-* _Hardcap_                    : 20769 ETH
+* _Hardcap_                    : 26330 ETH
 * _Developers tokens percent_  : 3% of total tokens
 * _Founders tokens percent_    : 5% of total tokens
 * _Bounty tokens percent_      : 5% of total tokens
