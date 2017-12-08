@@ -81,8 +81,8 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 _Milestones_
 
 1. 1 week or up to  570 ETH    : discount 40%
-2. 1 week or up to 1400 ETH    : discount 20%
-3. 1 week or up to 2570 ETH    : discount 30%
+2. 1 week or up to 1400 ETH    : discount 30%
+3. 1 week or up to 2570 ETH    : discount 20%
 
 #### Token General Event
 * _Minimal insvested limit_    : 0.1 ETH
