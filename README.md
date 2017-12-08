@@ -32,7 +32,7 @@ After crowdsale contract manager must call finishMinting.
 
 ### How to invest
 To purchase tokens investor should send ETH (more than minimum 0.1 EHT) to corresponding crowdsale contract.
-Recommended GAS: xxxxx , GAS PRICE - 21 Gwei.
+Recommended GAS: 200 000 , GAS PRICE - 60 Gwei.
 
 ### Wallets with ERC20 support
 1. MyEtherWallet - https://www.myetherwallet.com/
