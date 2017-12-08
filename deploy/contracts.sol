@@ -212,12 +212,6 @@ contract Ownable {
 
 }
 
-/**
- * @title Mintable token
- * @dev Simple ERC20 Token example, with mintable token creation
- * @dev Issue: * https://github.com/OpenZeppelin/zeppelin-solidity/issues/120
- * Based on code by TokenMarketNet: https://github.com/TokenMarketNet/ico/blob/master/contracts/MintableToken.sol
- */
 contract TaskFairToken is StandardToken, Ownable {	
 
   event Mint(address indexed to, uint256 amount);
@@ -271,7 +265,6 @@ contract TaskFairToken is StandardToken, Ownable {
   }
 
 }
-
 
 contract StagedCrowdsale is Ownable {
 
@@ -652,17 +645,16 @@ contract PreTGE is CommonCrowdsale {
     addStage(7, 1400000000000000000000, 30);
     addStage(7, 2570000000000000000000, 20);
     
-    setStart(1512392400);
-    setWallet(0xb8600b335332724df5108fc0595002409c2adbc6);
-    setBountyTokensWallet(0x66ff3b89e15acb0b5e69179a2e54c494b89bdb1b);
-    setDevTokensWallet(0x54a67f1507deb1bfc58ba3ffa94b59fc50eb74bc);
-    setAdvisorsTokensWallet(0xd1bc33b2c89c93e65b0d476b8b50bfee82594847);
-    setFoundersTokensWallet(0xe619bcd3c4609ae269b5ebe5bf0cb7d1dc70c210);
-    setGrowthTokensWallet(0x39ecc9e56979c884b28d8c791890e279ab1ec5f4);
-    setDevWallet(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
-    setDirectMintAgent(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498e);
-    setSecurityTokensWallet(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498a);
-    setSecurityWallet(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498b);
+    setStart(1512867600);
+    setWallet(0x73598a82559f3566Ecf93aab415323668124191C);
+    setBountyTokensWallet(0x1C59BD0658DA5f357926D38083286A7E25Cd6f97);
+    setDevTokensWallet(0xad3Df84A21d508Ad1E782956badeBE8725a9A447);
+    setAdvisorsTokensWallet(0x17D34009D6e16Ae35dCfF3840d9eeC832d75FeA6);
+    setFoundersTokensWallet(0xd63c6c4977B80a2042aA71bEd548e32A856e9481);
+    setGrowthTokensWallet(0x9518ea93647DC3B198d3B04AD229977d8485fA1A);
+    setDevWallet(0xad3Df84A21d508Ad1E782956badeBE8725a9A447);
+    setSecurityTokensWallet(0x6Ea796DA599827ba871BE76fAF1948e45Bce4628);
+    setSecurityWallet(0xfA4b94A9Ab8b5Ae3a1fd10aCE18724Bf1EC8CB07);
   }
 
   function setNextSaleAgent(address newNextSaleAgent) public onlyOwner {
@@ -740,19 +732,18 @@ contract TGE is CommonCrowdsale {
     addStage(7, 5700000000000000000000, 10);
     addStage(7, 18280000000000000000000, 0);
     
-    setStart(1514293200);
-    setWallet(0x67d78de2f2819dcbd47426a1ac6a23b9e9c9d300);
+    setStart(1514941200);
+    setWallet(0x570241a4953c71f92B794F77dd4e7cA295E79bb1);
 
-    setBountyTokensWallet(0x872215ccf488031991f7dcc65e80a7c1fd497e75);
-    setDevTokensWallet(0x97f2f8a94986d9049147590e12a64ffaa9f946a8);
-    setAdvisorsTokensWallet(0x7bb6dbc29f8adb3a7627ea65372fe471509b7698);
-    setFoundersTokensWallet(0x49ecc9e56979c884b28d8c791890e279ab1ec5f4);
-    setGrowthTokensWallet(0x59ecc9e56979c884b28d8c791890e279ab1ec5f4);
-    setDirectMintAgent(0xc66b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
-    setSecurityTokensWallet(0xc76b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
+    setBountyTokensWallet(0xb2C6f32c444C105F168a9Dc9F5cfCCC616041c8a);
+    setDevTokensWallet(0xad3Df84A21d508Ad1E782956badeBE8725a9A447);
+    setAdvisorsTokensWallet(0x7C737C97004F1C9156faaf2A4D04911e970aC554);
+    setFoundersTokensWallet(0xFEED17c1db96B62C18642A675a6561F3A395Bc10);
+    setGrowthTokensWallet(0xEc3E7D403E9fD34E83F00182421092d44f9543b2);
+    setSecurityTokensWallet(0xa820b6D6434c703B1b406b12d5b82d41F72069b4);
 
-    setDevWallet(0xc56b0d5bbc2bf9b760ebd797dacd3a683cb8498f);
-    setSecurityWallet(0xc56b1d5bbc2bf9b760ebd797dacd3a683cb8498f);
+    setDevWallet(0xad3Df84A21d508Ad1E782956badeBE8725a9A447);
+    setSecurityWallet(0xA6A9f8b8D063538C84714f91390b48aE58047E31);
   }
 
   function finishMinting() public onlyOwner {
@@ -770,5 +761,6 @@ contract TGE is CommonCrowdsale {
   } 
 
 }
+
 
 

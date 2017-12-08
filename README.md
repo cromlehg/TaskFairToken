@@ -48,9 +48,9 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Base price_                 : 4000 TFT per ETH
 
 #### Links
-* _Token_ - 
-* _PreTGE_ -
-* _TGE_ -
+* _Token_ - https://etherscan.io/token/0xf9cb429a0a56d1bdf6b4dc4b4d729c1208726674
+* _PreTGE_ - https://etherscan.io/address/0xc87b7887f62c6674a19103fc35c749474d78ff40
+* _TGE_ - https://etherscan.io/address/0x6b5f8cb3f5bd108d8004a38b54dc6d19a11e6a82
 
 #### Pre Token General Event
 * _Minimal insvested limit_    : 1 ETH
@@ -64,18 +64,18 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Security tokens percent_    : 0.5% of total tokens
 * _Developers ETH percent_     : 2% of eth
 * _Security ETH percent_       : 1% of eth
-* _Start_                      : 04.12.2017 в 01:00 GMT
-* _Contract manager_           : 
+* _Start_                      : Sun, 10 Dec 2017 1:00:00 GMT
+* _Contract manager_           : 0xad3Df84A21d508Ad1E782956badeBE8725a9A447
 * _Direct mint agent_          : 
-* _ETH Wallet_                 : 
-* _Developers tokens wallet_   : 
-* _Founders tokens wallet_     : 
-* _Bounty tokens wallet_       : 
-* _Growth fund tokens wallet_  : 
-* _Advisors tokens wallet_     : 
-* _Security tokens wallet_     : 
-* _Security wallet_            : 
-* _Developers ETH wallet_      : 
+* _ETH Wallet_                 : 0x73598a82559f3566Ecf93aab415323668124191C 
+* _Developers tokens wallet_   : 0xad3Df84A21d508Ad1E782956badeBE8725a9A447
+* _Founders tokens wallet_     : 0xd63c6c4977B80a2042aA71bEd548e32A856e9481
+* _Bounty tokens wallet_       : 0x1C59BD0658DA5f357926D38083286A7E25Cd6f97
+* _Growth fund tokens wallet_  : 0x9518ea93647DC3B198d3B04AD229977d8485fA1A
+* _Advisors tokens wallet_     : 0x17D34009D6e16Ae35dCfF3840d9eeC832d75FeA6
+* _Security tokens wallet_     : 0x6Ea796DA599827ba871BE76fAF1948e45Bce4628
+* _Security wallet_            : 0xfA4b94A9Ab8b5Ae3a1fd10aCE18724Bf1EC8CB07
+* _Developers ETH wallet_      : 0xad3Df84A21d508Ad1E782956badeBE8725a9A447
 
 
 _Milestones_
@@ -95,18 +95,18 @@ _Milestones_
 * _Security tokens percent_    : 0.5% of total tokens
 * _Developers ETH percent_     : 2% of eth
 * _Security ETH percent_       : 1% of eth
-* _Start_                      : 26.12.2017 в 01:00 GMT
-* _Contract manager_           : 
-* _Direct mint agent_          : 
-* _ETH Wallet_                 : 
-* _Developers tokens wallet_   : 
-* _Founders tokens wallet_     : 
-* _Bounty tokens wallet_       : 
-* _Growth fund tokens wallet_  : 
-* _Advisors tokens wallet_     : 
-* _Security tokens wallet_     : 
-* _Security wallet_            : 
-* _Developers ETH wallet_      : 
+* _Start_                      : Wed, 3 Jan 2018 1:00:00 GMT
+* _Contract manager_           : 0xad3Df84A21d508Ad1E782956badeBE8725a9A447
+* _Direct mint agent_          :  
+* _ETH Wallet_                 : 0x570241a4953c71f92B794F77dd4e7cA295E79bb1
+* _Developers tokens wallet_   : 0xad3Df84A21d508Ad1E782956badeBE8725a9A447
+* _Founders tokens wallet_     : 0xFEED17c1db96B62C18642A675a6561F3A395Bc10
+* _Bounty tokens wallet_       : 0xb2C6f32c444C105F168a9Dc9F5cfCCC616041c8a
+* _Growth fund tokens wallet_  : 0xEc3E7D403E9fD34E83F00182421092d44f9543b2
+* _Advisors tokens wallet_     : 0x7C737C97004F1C9156faaf2A4D04911e970aC554
+* _Security tokens wallet_     : 0xa820b6D6434c703B1b406b12d5b82d41F72069b4
+* _Security wallet_            : 0xA6A9f8b8D063538C84714f91390b48aE58047E31
+* _Developers ETH wallet_      : 0xad3Df84A21d508Ad1E782956badeBE8725a9A447
 
 _Milestones_
 1. 1 week or up to  2850 ETH   : discount 20%
