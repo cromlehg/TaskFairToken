@@ -73,8 +73,8 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Bounty tokens wallet_       : 0x1C59BD0658DA5f357926D38083286A7E25Cd6f97
 * _Growth fund tokens wallet_  : 0x9518ea93647DC3B198d3B04AD229977d8485fA1A
 * _Advisors tokens wallet_     : 0x17D34009D6e16Ae35dCfF3840d9eeC832d75FeA6
-* _Security tokens wallet_     : 0x6Ea796DA599827ba871BE76fAF1948e45Bce4628
-* _Security wallet_            : 0xfA4b94A9Ab8b5Ae3a1fd10aCE18724Bf1EC8CB07
+* _Security tokens wallet_     : 0xe3B9E00c0b0E676A9105E7BbF984667d12e06d51
+* _Security wallet_            : 0xe3B9E00c0b0E676A9105E7BbF984667d12e06d51
 * _Developers ETH wallet_      : 0xad3Df84A21d508Ad1E782956badeBE8725a9A447
 
 
@@ -104,8 +104,8 @@ _Milestones_
 * _Bounty tokens wallet_       : 0xb2C6f32c444C105F168a9Dc9F5cfCCC616041c8a
 * _Growth fund tokens wallet_  : 0xEc3E7D403E9fD34E83F00182421092d44f9543b2
 * _Advisors tokens wallet_     : 0x7C737C97004F1C9156faaf2A4D04911e970aC554
-* _Security tokens wallet_     : 0xa820b6D6434c703B1b406b12d5b82d41F72069b4
-* _Security wallet_            : 0xA6A9f8b8D063538C84714f91390b48aE58047E31
+* _Security tokens wallet_     : 0xe3B9E00c0b0E676A9105E7BbF984667d12e06d51
+* _Security wallet_            : 0xe3B9E00c0b0E676A9105E7BbF984667d12e06d51
 * _Developers ETH wallet_      : 0xad3Df84A21d508Ad1E782956badeBE8725a9A447
 
 _Milestones_
