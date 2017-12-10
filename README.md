@@ -64,7 +64,7 @@ Investor must not use other wallets, coinmarkets or stocks. Can lose money.
 * _Security tokens percent_    : 0.5% of total tokens
 * _Developers ETH percent_     : 2% of eth
 * _Security ETH percent_       : 1% of eth
-* _Start_                      : Sun, 10 Dec 2017 1:00:00 GMT
+* _Start_                      : Sun, 10 Dec 2017 1:00:00 EST
 * _Contract manager_           : 0xad3Df84A21d508Ad1E782956badeBE8725a9A447
 * _Direct mint agent_          : 
 * _ETH Wallet_                 : 0x73598a82559f3566Ecf93aab415323668124191C 
